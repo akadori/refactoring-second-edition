@@ -37,42 +37,4 @@ function statement(invoice, plays) {
   return result;
 }
 
-function test(){
-  const invoices = {
-      "customer": "BigCo",
-      "performances": [
-        {
-          "playID": "hamlet",
-          "audience": 55
-        },
-        {
-          "playID": "aslike",
-          "audience": 35
-        },
-        {
-          "playID": "othello",
-          "audience": 40
-        }
-      ]
-    }
-
-  const plays = {
-    "hamlet": {
-      "name": "Hamlet",
-      "type": "tragedy"
-    },
-    "aslike": {
-      "name": "AsYouLikeIt",
-      "type": "comedy"
-    },
-    "othello": {
-      "name": "Othello",
-      "type": "tragedy"
-    }
-  }
-
-  console.log(statement(invoices, plays))
-  
-}
-
-test()
+module.exports = statement
