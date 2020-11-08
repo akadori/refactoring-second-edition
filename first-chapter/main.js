@@ -1,4 +1,11 @@
 function statement(invoice, plays) {
+  function volumeCreditsFor(aPerformance) {
+    let result = 0;
+    result += Math.max(aPerformance.audience - 30, 0)
+    if ("comedy" === playFor(aPerformance).type) result += Math.floor(aPerformance.audience / 5);
+    return result
+  }
+
   function amountFor(aPerformance){    
     let result =0;
     switch(playFor(aPerformance).type) {
@@ -30,11 +37,9 @@ function statement(invoice, plays) {
   let result = `Statement for ${invoice.customer}\n`;
   const format = new Intl.NumberFormat("en-US", {style: 'currency', currency: "USD", minimumFractionDigits: 2}).format;
   for (let perf of invoice.performances) {
-    // ボリューム特典のポイントを加算
-    volumeCredits += Math.max(perf.audience - 30, 0)
-    // 喜劇の時は10人につき、さらにポイントを加算(なぜ5で割る: tamari append)
-    if ("comedy" === playFor(perf).type) volumeCredits += Math.floor(perf.audience / 5);
+    volumeCredits += volumeCreditsFor(perf)
 
+    // 注文の内訳を出力
     result += ` ${playFor(perf).name}: ${format(amountFor(perf)/100)} (${perf.audience} seats)\n`
     totalAmount += amountFor(perf)
   }
