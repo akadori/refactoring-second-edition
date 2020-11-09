@@ -1,4 +1,4 @@
-const statement = require("./main")
+const statement = require("./statement")
 const invoices = {
   "customer": "BigCo",
   "performances": [
